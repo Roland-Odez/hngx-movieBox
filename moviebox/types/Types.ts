@@ -14,3 +14,10 @@ export type Movie = {
     vote_average: number,
     vote_count: number
 }
+
+export type SearchData = {
+    page: number,
+    results: Movie[],
+    total_pages: number,
+    total_results: number
+}
