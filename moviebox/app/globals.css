@@ -16,6 +16,61 @@
   }
 }
 
+.reduce-scroll-x::-webkit-scrollbar-thumb {
+  width: 6px;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.on-scrollbar::-webkit-scrollbar-thumb {
+  background: #dee0e241;
+}
+
+.on-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #d9e0e965;
+}
+
+.on-scrollbar {
+  -ms-overflow-style: initial;
+  scrollbar-width: auto;
+}
+
+@layer utilities {
+
+  .reduce-scroll-x::-webkit-scrollbar-thumb {
+    width: 6px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .on-scrollbar::-webkit-scrollbar-thumb {
+    background: #dee0e241;
+  }
+
+  .on-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #d9e0e965;
+  }
+
+  .on-scrollbar {
+    -ms-overflow-style: initial;
+    scrollbar-width: auto;
+  }
+}
+
 /* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

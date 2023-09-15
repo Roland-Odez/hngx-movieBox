@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useRef, useEffect } from 'react'
-import { Movie, SearchData } from '@/types/Types';
+import { SearchData } from '@/types/Types';
 
 const options = {
     method: 'GET',
@@ -26,6 +26,7 @@ const Navbar = () => {
         setSearch(true)
         setTimeout(() => makeFocus(), 0)
     }
+
     const makeFocus = () => inputRef.current?.focus()
     const clearInput = () => setText('')
 
@@ -88,46 +89,46 @@ const Navbar = () => {
                         </div>
                     </div>
                 </div>
-                {
-                    search && (
-                        <div className='overflow-y-auto bg-[#000000] fixed top-0 h-screen w-full p-2'>
-                            <button onClick={() => setSearch(false)} className='text-white font-medium text-base bg-rose-600 p-1 px-2 rounded-md'>close</button>
-                            <div className='flex items-center justify-center w-full'>
-                                <div className='w-full flex lg:w-[525px] p-1 py-3 lg:py-[6px] lg:px-[10px] justify-between items-start border-b-[1px] border-gray-300'>
-                                    <input ref={inputRef} onChange={handleChange} value={text} type="text" className='outline-none w-full text-white placeholder:text-base placeholder:text-white bg-transparent' name="search" id="search" placeholder='What do you want to watch?' />
-                                    <button onClick={clearInput} className='text-white font-medium text-sm bg-rose-600 w-[26px] h-[26px] rounded-full'>X</button>
-                                </div>
-
-                            </div>
-                            {
-                                isLoading === true ?
-                                    (<Image src='/loader.svg' className='lg:w-[60px] lg:h-[60px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]' width={50} height={50} alt='preloader' />)
-                                    :
-                                    (
-
-                                        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-6 py-10 items-center justify-center px-4 lg:px-10'>
-                                            {
-
-                                                results?.results.map((movie) => (
-
-                                                    <Link href={`/movies/${movie.id}`} className='flex gap-2'>
-                                                        <div className='w-[70px] sm:w-[100px] object-cover bg-blue-700 h-[70px] sm:h-[100px] rounded-md'>
-                                                            <Image src={`https://image.tmdb.org/t/p/w220_and_h330_face/${movie.poster_path}`} width={100} height={100} className='rounded-md object-cover w-full h-full' alt='movie' objectFit='fill' />
-                                                        </div>
-                                                        <div className='text-white'>
-                                                            <h1>{movie.title}</h1>
-                                                            <p>{movie.release_date.split("-")[0]}</p>
-                                                        </div>
-                                                    </Link>
-                                                ))
-                                            }
-                                        </div>
-                                    )
-                            }
-                        </div>
-                    )
-                }
             </nav >
+            {
+                search && (
+                    <div className='bg-[#000000] fixed top-0 h-full w-full p-2 z-40 no-scrollbar'>
+                        <button onClick={() => setSearch(false)} className='text-white font-medium text-base bg-rose-600 p-1 px-2 rounded-md'>close</button>
+                        <div className='flex items-center justify-center w-full'>
+                            <div className='w-full flex lg:w-[525px] p-1 py-3 lg:py-[6px] lg:px-[10px] justify-between items-start border-b-[1px] border-gray-300'>
+                                <input ref={inputRef} onChange={handleChange} value={text} type="text" className='outline-none w-full text-white placeholder:text-base placeholder:text-white bg-transparent' name="search" id="search" placeholder='What do you want to watch?' />
+                                <button onClick={clearInput} className='text-white font-medium text-sm bg-rose-600 w-[26px] h-[26px] rounded-full'>X</button>
+                            </div>
+
+                        </div>
+                        {
+                            isLoading === true ?
+                                (<Image src='/loader.svg' className='lg:w-[60px] lg:h-[60px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]' width={50} height={50} alt='preloader' />)
+                                :
+                                (
+
+                                    <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-6 py-10 items-center justify-center px-4 lg:px-10 h-screen overflow-y-auto'>
+                                        {
+
+                                            results?.results.map((movie) => (
+
+                                                <Link href={`/movies/${movie.id}`} className='flex gap-2'>
+                                                    <div className='!w-[70px] sm:w-[100px] object-cover bg-blue-700 h-[70px] sm:h-[100px] rounded-md'>
+                                                        <Image src={`https://image.tmdb.org/t/p/w220_and_h330_face/${movie.poster_path}`} width={100} height={100} className='rounded-md object-cover w-full h-full' alt='movie' objectFit='fill' />
+                                                    </div>
+                                                    <div className='text-white'>
+                                                        <h1 className='text-sm sm:text-base'>{movie.title}</h1>
+                                                        <p>{movie.release_date.split("-")[0]}</p>
+                                                    </div>
+                                                </Link>
+                                            ))
+                                        }
+                                    </div>
+                                )
+                        }
+                    </div>
+                )
+            }
         </>
     )
 }
