@@ -1,6 +1,9 @@
+# hngx-movieBox
+A movie app built for users to search for movies, and view details about them and possibly save their favourite movies in the coming future.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## To Get Started
 
 First, run the development server:
 
