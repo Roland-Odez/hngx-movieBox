@@ -15,7 +15,13 @@ async function getMovie(id: number) {
     };
 
     return fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            } else {
+                throw (`Movie of ID ${id} not found`)
+            }
+        })
         .then(response => response)
         .catch(err => console.error(err));
 }
@@ -83,7 +89,7 @@ const Movie = async ({ params }: { params: { id: number } }) => {
                     <span className='hidden md:inline'>Log out</span>
                 </div>
             </nav>
-            <div className='flex h-screen overflow-y-auto flex-col flex-1 p-2 xl:p-9'>
+            <div className='flex h-screen overflow-y-auto flex-col flex-1 p-2 xl:p-9 no-scrollbar'>
                 <div>
 
                     <div className='relative object-cover object-center h-[400px] lg:h-[550px] xl:h-[650px] inset-0'>
@@ -93,12 +99,12 @@ const Movie = async ({ params }: { params: { id: number } }) => {
                         </button>
                     </div>
                     <div className='flex flex-col lg:flex-row gap-4 p-2 lg:p-4'>
-                        <h1 className='text-lg xl:text-3xl font-medium flex gap-2'>
-                            <span data-testid='movie-title'>{movie.title}</span>
-                            •
-                            <span data-testid='movie-release-date'>{movie.release_date.split('-')[0]}</span>
-                            • PG-13 •
-                            <span data-testid='movie-runtime'>{movie.runtime}m</span>
+                        <h1 className='text-lg xl:text-3xl font-medium flex gap-2 flex-wrap'>
+                            <span data-testid='movie-title'>{movie.title} •</span>
+
+                            <span data-testid='movie-release-date'>{movie.release_date.split('-')[0]} •</span>
+                            PG-13
+                            <span data-testid='movie-runtime'>• {movie.runtime}m</span>
                         </h1>
                         <div className='flex flex-col-reverse gap-2 sm:flex-row justify-between items-start flex-1'>
                             <div className='flex gap-2 xl:gap-4 w-[72%] flex-wrap'>

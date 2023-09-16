@@ -1,6 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { DM_Sans } from 'next/font/google'
+import { ErrorBoundary } from "react-error-boundary";
+
 
 const dm_Sans = DM_Sans({ subsets: ['latin'] })
 

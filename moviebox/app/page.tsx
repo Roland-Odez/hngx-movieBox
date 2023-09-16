@@ -9,7 +9,7 @@ const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZDBkOGZjNTNmNDJmNmU4NTBmNTAxYzBkNGU5M2U4MiIsInN1YiI6IjY1MDAyNTA4ZmZjOWRlMGVlMTc2ZDE2OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HZXT-pCiJcknlN8UumZqN9N3j757icvvsImievf0a1Q'
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_KEY}`
   }
 };
 const getUpcomingMovies: any = () => {

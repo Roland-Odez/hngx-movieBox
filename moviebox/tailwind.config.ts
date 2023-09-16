@@ -19,7 +19,8 @@ const config: Config = {
         'slidedown': 'slidedown .7s ease-in-out',
         'slideleft': 'slideleft 1s ease-in-out',
         'slideright': 'slideright 1s ease-in-out',
-        'wave': 'wave 1.2s linear infinite'
+        'wave': 'wave 1.2s linear infinite',
+        'fadeIn': 'fadein 1s easin-in-out'
       },
       keyframes: {
         slowfade: {
@@ -47,9 +48,9 @@ const config: Config = {
           '50%': { transform: 'scale(1)' },
           '100%': { transform: 'scale(0)' },
         },
-        fadeOut: {
-          from: { opacity: '1' },
-          to: { opacity: '0', display: "none" }
+        fadein: {
+          from: { opacity: '0' },
+          to: { opacity: '1' }
         }
       }
     },

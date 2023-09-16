@@ -26,10 +26,10 @@ const Header = ({ movies }: { movies: SearchData }) => {
         // <>
         //     <span>{index}</span></>
         <>
-            <header className='w-full h-[85vh] object-cover relative'>
+            <header className='w-full h-[85vh] bg-black object-cover relative'>
                 {
                     movies.results.slice(0, 5).map((movie, i) => (
-                        <div key={i} style={{ display: `${i !== index ? "none" : "block"}` }} >
+                        <div key={i} style={{ display: `${i !== index ? "none" : "block"}` }} className='animate-fadeIn' >
 
                             <Image src={`https://image.tmdb.org/t/p/w220_and_h330_face/${movie.poster_path}`} alt='header-image' layout='fill' objectFit='fill' className='w-full absolute inset-0 h-full object-cover' />
                             <div className='flex flex-col items-start gap-y-2 animate-slidedown md:gap-y-4 absolute top-[50%] sm:top-1/3 left-[10%] w-[300px] sm:w-[350px]'>

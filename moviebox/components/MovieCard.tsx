@@ -13,7 +13,13 @@ async function getMovie(id: number) {
     };
 
     return fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
-        .then(response => response.json())
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            } else {
+                throw (`Movie of ID ${id} not found`)
+            }
+        })
         .then(response => response)
         .catch(err => console.error(err));
 }
@@ -30,7 +36,7 @@ const MovieCard = async (props: { data: Movie }) => {
                     <Image data-testid='movie-poster' src={`https://image.tmdb.org/t/p/w220_and_h330_face/${props.data.poster_path}`} alt='movie post' width={486} height={720} className='w-ful h-full block rounded-t-md object-cover' />
                 </div>
                 <div className='flex flex-col gap-y-2 md:gap-y-3 p-2'>
-                    <p className='text-xs font-bold text-gray-400'>{`${movie.production_countries[0].iso_3166_1}, ${<span data-testid='movie-release-date'>{props.data.release_date.split('-')[0]}</span>} - Current`}</p>
+                    <p className='text-xs font-bold text-gray-400'>{movie.production_countries[0].iso_3166_1}, <span data-testid='movie-release-date'>{props.data.release_date.split('-')[0]}</span> - Current</p>
                     <p className='text-[18px] font-bold text-gray-900' data-testid='movie-title'>{props.data.title}</p>
                     <div className='flex items-center justify-between'>
                         <div className='text-gray-900 text-xs flex gap-2'>
